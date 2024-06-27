@@ -1,0 +1,28 @@
+.edit-form {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 10px;
+}
+
+label {
+  color: black;
+}
+
+.ingredients {
+  background-color: gray;
+  padding: 10px;
+}
+
+.main-information {
+  background-color: gray;
+  padding: 10px;
+}
+
+textarea {
+  width: 500px;
+  height: 300px;
+}

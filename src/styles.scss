@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import 'fonts';
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+
 
 :root {
   --primary-color: #dc3545;
@@ -15,10 +21,11 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  height: 100dvh;
+  font-family: 'JetBrains Mono', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #8fe0ba;
+  background: orange;
   color: #333;
 }
 
@@ -92,6 +99,7 @@ img {
 }
 
 .btn {
+  width: 100%;
   display: inline-block;
   background: var(--light-color);
   color: #333;
@@ -226,18 +234,6 @@ img {
   }
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='date'],
-select,
-textarea {
-  display: block;
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-}
 
 input[type='submit'],
 button {
@@ -292,4 +288,30 @@ table th {
       color: var(--light-color);
     }
   }
+}
+
+.h1 {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 800;
+}
+
+.recipe-control-label {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.recipe-input {
+  width: 100%;
+  margin-top: 8px;
+  display: block;
+  border: 1px solid var(--light-color);
+  border-radius: 4px;
+  padding: 12px 20px;
+  background: var(--dark-color);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  color: var(--light-color)
 }

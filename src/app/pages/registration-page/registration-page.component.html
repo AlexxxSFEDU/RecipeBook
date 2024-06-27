@@ -1,0 +1,22 @@
+<form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1>Регистрация</h1>
+
+  <div class="alert alert-danger"  *ngIf="authService.error$ | async as error">
+    {{error}}
+  </div>
+
+  <label class="recipe-control-label">
+    E-mail
+    <input formControlName="email" class="recipe-input" type="text" placeholder="введите e-mail">
+  </label>
+  <div class="password-input">
+    <label class="recipe-control-label">
+      Пароль
+      <input formControlName="password" class="recipe-input" [type]="isPasswordVisible() ? 'text' : 'password'" placeholder="введите пароль">
+    </label >
+    <button class="btn" type="submit">Зарегистрироваться</button>
+    <button [class]="isPasswordVisible() ? 'pi pi-eye' : 'pi pi-eye-slash'" type="button" (click)="isPasswordVisible.set(!isPasswordVisible())"></button>
+  </div>
+  <small style="text-align: center">Уже есть аккаунт? <a class="" [routerLink]="'/login'"> Вход </a> </small>
+</form>
+<img src="/assets/svg/logo.svg" alt="logo">

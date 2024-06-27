@@ -1,0 +1,38 @@
+<div *ngIf="recipe$ | async as recipe; else loading">
+  <div class="recipe">
+    <div class="header">
+      <h1>{{recipe.name}}</h1>
+        <img [src]="recipe.imgSrc" class="recipeImg" alt="{{recipe.name}}" style="width: 400px; height: 300px;">
+      <div>
+        <button routerLink="/" class="btn btn-dark">На главную</button>
+        <div *ngIf="recipe.authorEmail === email">
+          <button class="btn btn-dark"  [routerLink]="['/recipe', recipe.id, 'edit']">Редактировать</button>
+        </div>
+        <button class="btn btn-dark"  (click)="addToFavorites(recipe)" [disabled]="isRecipeInFavorites(recipe)">В избранное</button>
+        <div *ngIf="recipe.ingredients">
+        <button class="btn btn-dark"  (click)="addToCart(recipe.ingredients)" [disabled]="isIngredientsInCart(recipe.ingredients)">Добавить ингредиенты</button>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <strong>Дата добавления:</strong><small>{{recipe.date | date:'mediumDate'}}</small>
+      <h3>Описание:</h3>
+      <p>{{recipe.description}}</p>
+      <div *ngIf="recipe.ingredients">
+        <h3>Ингредиенты:</h3>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} - {{ingredient.quantity}} {{ingredient.quantityUnit}}</li>
+        </ul>
+      </div>
+      <h3>Инструкция:</h3>
+      <p>{{recipe.instruction}}</p>
+      <div *ngIf="recipe.ingredients">
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="spinner-container">
+    <p-progressSpinner ariaLabel="loading" class="spinner"/>
+  </div>
+</ng-template>

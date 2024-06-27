@@ -1,0 +1,27 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.btn
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  width: 200px
+}
+.recipe
+{
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  margin: 40px;
+  background: gray;
+  padding: 20px;
+}
+.info
+{
+  margin-top: 50px;
+}
+

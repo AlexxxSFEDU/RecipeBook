@@ -1,0 +1,17 @@
+<img src="/assets/svg/recipe-svgrepo-com%20(1).svg" alt="">
+<h1>Recipe Book</h1>
+<nav>
+  <ul class="main-menu-list">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="pi pi-home menu-item" [routerLink]="'/'"> Главная</a>
+    </li>
+    <li>
+      <a class="pi pi-star menu-item" routerLink="favorites"> Избранное</a>
+    </li>
+    <li>
+      <i routerLinkActive="active" class="pi pi-shopping-cart menu-item" routerLink="cart"> Корзина</i>
+    </li>
+  </ul>
+  <i class="pi pi-sign-out menu-item" (click)="logout()"> Выход</i>
+</nav>
+

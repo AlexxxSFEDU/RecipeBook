@@ -1,0 +1,35 @@
+<div class="searchStr">
+  <input type="text" class="pi pi-search" placeholder="Найти рецепт..." [(ngModel)]="searchStr" style="">
+  <button *ngIf="searchStr" class="btn" (click)="clearStr()">Очистить</button>
+</div>
+<div *ngIf="recipes.length; else empty" class="recipe-list">
+  <div class="" *ngFor="let recipe of recipes | search: searchStr ; let i = index">
+    <div class="photo-name card">
+      <div>
+        <img [src]="recipe.imgSrc" alt="{{recipe.name}}" class="recipe-card__photo">
+      </div>
+      <div>
+        <div class="recipe-card__name">
+          <h2>{{ recipe.name }}</h2>
+        </div>
+        <div class="recipe-card__description">
+          <p>{{ recipe.description }}</p>
+          <button class="btn btn-success" [routerLink]="['/recipe', recipe.id]">Открыть</button>
+          <div *ngIf="recipe.authorEmail === email">
+            <button class="btn btn-danger" (click)="recipe.id && remove(recipe.id)">Удалить</button>
+          </div>
+        </div>
+        <div class="recipe-card__date">
+          Дата добавления рецепта: {{ recipe.date | date : 'mediumDate' }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #empty>
+  <p class="text-center">
+    Добавьте ваш первый рецепт!
+  </p>
+</ng-template>

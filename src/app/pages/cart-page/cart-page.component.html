@@ -1,0 +1,18 @@
+<div class="cart-wrapper">
+  <h2>Ваш список ингредиентов</h2>
+  <div *ngIf="ingredients.length; else empty" class="ingredient-list">
+    <div class="ingredient" *ngFor="let ingredient of ingredients; let i = index">
+      {{ ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.quantityUnit }}
+      <button class="btn-light" (click)="remove(ingredient.name)">Удалить</button>
+    </div>
+  </div>
+  <button class="btn btn-success" (click)="downloadIngredientsList(ingredients)" [disabled]="!ingredients.length">
+    Скачать ингредиенты
+  </button>
+  <ng-template #empty>
+    <p class="text-center">
+      Добавьте ингредиенты!
+    </p>
+  </ng-template>
+</div>
+

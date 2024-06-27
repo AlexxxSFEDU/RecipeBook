@@ -1,0 +1,65 @@
+<div class="edit-form">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h2>Основная информация</h2>
+    <div class="main-information">
+      <div class="form-control" [ngClass]="{invalid: form.get('')?.touched && form.get('name')?.invalid}">
+        <label for="name">Название рецепта:</label>
+        <input id="name" type="text" formControlName="name">
+        <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="validation">
+          <small *ngIf="form.get('name')?.errors?.['required']">Введите название рецепта</small>
+        </div>
+      </div>
+      <div class="form-control" [ngClass]="{invalid: form.get('imgSrc')?.touched && form.get('imgSrc')?.invalid}">
+        <label for="imgSrc">Ссылка на изображение рецепта:</label>
+        <input id="imgSrc" type="text" formControlName="imgSrc">
+        <div *ngIf="form.get('imgSrc')?.touched && form.get('imgSrc')?.invalid" class="validation">
+          <small *ngIf="form.get('imgSrc')?.errors?.['required']">Вставьте ссылку на изображение</small>
+        </div>
+      </div>
+      <div class="form-control"
+           [ngClass]="{invalid: form.get('description')?.touched && form.get('description')?.invalid}">
+        <label for="description">Описание рецепта:</label>
+        <input id="description" type="text" formControlName="description">
+        <div *ngIf="form.get('description')?.touched && form.get('description')?.invalid" class="validation">
+          <small *ngIf="form.get('description')?.errors?.['required']">Введите описание рецепта</small>
+        </div>
+      </div>
+      <div class="form-control"
+           [ngClass]="{invalid: form.get('instruction')?.touched && form.get('instruction')?.invalid}">
+        <label for="instruction">Инструкция к рецепту:</label>
+        <br>
+        <textarea id="instruction" formControlName="instruction" placeholder="Шаг 1: ....., Шаг 2: ....."> </textarea>
+        <div *ngIf="form.get('instruction')?.touched && form.get('instruction')?.invalid" class="validation">
+          <small *ngIf="form.get('instruction')?.errors?.['required']">
+            Напишите инструкцию по приготовлению!
+          </small>
+        </div>
+      </div>
+    </div>
+    <h2 *ngIf="ingredientsControl().length">Ингредиенты</h2>
+    <div formArrayName="ingredients" class="ingredients">
+      <div *ngFor="let ingredient of ingredientsControl().controls; let i=index" [formGroupName]="i">
+        <div class="form-control">
+          <label for="ingredientName">Название ингредиента:</label>
+          <input id="ingredientName" type="text" formControlName="name">
+          <label for="ingredientQuantity">Количество ингредиента:</label>
+          <input id="ingredientQuantity" type="text" formControlName="quantity">
+          <label for="ingredientUnit{{i}}">Единица измерения ингредиента:</label>
+          <select formControlName="quantityUnit" id="ingredientQuantityUnit{{i}}" name="ingredientQuantityUnit{{i}}">
+            <option value="штук/а">шт</option>
+            <option value="литр/ов">л</option>
+            <option value="миллилитр/ов">мл</option>
+            <option value="киллограмм/ов">кг</option>
+            <option value="грамм/ов">гр</option>
+          </select>
+          <button type="button" class="btn-danger" style="margin-left: 5px" (click)="removeIngredient(i)">Удалить
+            ингредиент
+          </button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addIngredient()">Добавить ингредиент</button>
+    <button class="btn btn-success btn-block" [disabled]="form.invalid">Обновить</button>
+    <button type="button" class="btn btn-dark btn-block" (click)="goBack()">Назад</button>
+  </form>
+</div>
