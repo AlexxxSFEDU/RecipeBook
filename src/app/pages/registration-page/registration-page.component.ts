@@ -30,8 +30,14 @@ export class RegistrationPageComponent implements OnInit{
     {
       return
     }
-    this.authService.signUp(email, password).pipe().subscribe();
-    this.form.reset()
-    this.router.navigate(['/login'])
+    this.authService.signUp(email, password).subscribe({
+      next: () => {},
+      error: (error) => {},
+      complete: () => {
+        this.form.reset();
+        this.router.navigate(['/login']);
+      }
+    });
+
   }
 }
